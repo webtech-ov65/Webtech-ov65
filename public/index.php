@@ -1,9 +1,11 @@
 <?php
 require_once('../private/header.php');
+
 $days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+$hours = get_hours_range();
 ?>
 <header>
-    <h1><?= date('F, Y'); ?></h1>
+    <h1><?= date('F Y'); ?></h1>
 </header>
 
 <table>
@@ -23,19 +25,25 @@ $days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     </thead>
     
     <tbody>
-        <tr>
-            <th>TODO: hours?</th>
-            
-            <?php
-            // TODO: apply actual days in month
-            for ($i = 1; $i <= 7; $i++)
-            {
-            ?>
-                <td>TODO</td>
-            <?php
-            }
-            ?>
-        </tr>
+        <?php
+        foreach ($hours as $hour)
+        {
+        ?>
+            <tr>
+                <th><?= $hour; ?></th>
+                
+                <?php
+                for ($i = 1; $i <= 7; $i++)
+                {
+                ?>
+                    <td><!-- TODO: fill with calendar items --></td>
+                <?php
+                }
+                ?>
+            </tr>
+        <?php
+        }
+        ?>
     </tbody>
 </table>
 
