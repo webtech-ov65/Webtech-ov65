@@ -9,7 +9,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
 ?>
 
 <div class="flex-x">
-    <div class="flex-y width-25">
+    <div class="flex-y width-20">
         <header>
             <h2>Target groups</h2>
         </header>
@@ -27,11 +27,11 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             }
             ?>
             
-            <a class="button" href="#">Log in to filter</a>
+            <a class="button" href="log-in.php">Log in to filter</a>
         </form>
     </div>
 
-    <div class="flex-y width-75">
+    <div class="flex-y width-80">
         <header>
             <h1><?= date('F Y'); ?></h1>
         </header>

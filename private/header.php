@@ -8,7 +8,7 @@ require_once('bootstrap.php');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         
-        <title><?= $app['name']; ?></title>
+        <title><?= ($page['title'] != null ? $page['title'] . ' - ' : '') . $app['name']; ?></title>
         <link rel="stylesheet" href="style.css">
     </head>
     
@@ -28,11 +28,11 @@ require_once('bootstrap.php');
                             
                             <li>
                                 <!-- TODO: apply URL -->
-                                <a href="#">Log in</a>
+                                <a href="log-in.php">Log in</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </header>
 
-            <main class="container">
+            <main class="<?= $page['main_class'] != null ? $page['main_class'] : 'container'; ?>">
