@@ -27,8 +27,11 @@ require_once('bootstrap.php');
                             </li>
                             
                             <li>
-                                <!-- TODO: apply URL -->
                                 <a href="log-in.php">Log in</a>
+                            </li>
+                            
+                            <li>
+                                <a href="sign-up.php">Sign up</a>
                             </li>
                         </ul>
                     </nav>
