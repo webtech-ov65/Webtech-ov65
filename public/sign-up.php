@@ -6,7 +6,7 @@ $page = [
 
 require_once('../private/header.php');
 ?>
-<div class="card width-30">
+<div class="card width-50">
     <header>
         <h1><?= $page['title']; ?></h1>
     </header>
