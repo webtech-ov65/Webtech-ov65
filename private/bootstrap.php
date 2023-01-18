@@ -14,6 +14,14 @@ $app = [
 ];
 
 // Functions
+function clean_input($input)
+{
+    $input = trim($input);
+    $input = htmlspecialchars($input);
+    
+    return $input;
+}
+
 function get_hours_range($start = 0, $end = 86400, $step = 3600, $format = 'H:i')
 {
     $times = [];

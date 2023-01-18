@@ -4,14 +4,16 @@ $page = [
     'main_class' => 'container flex-y center'
 ];
 
+require_once('../private/header.php');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // Keep track of errors
     $errors = [];
     
-    // Process input
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    // Clean input
+    $email = clean_input($_POST['email']);
+    $password = clean_input($_POST['password']);
     
     // Validate email
     if (empty($email))
@@ -34,8 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         header('Location: index.php');
     }
 }
-
-require_once('../private/header.php');
 ?>
 <div class="card width-30">
     <header>
