@@ -27,7 +27,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             }
             ?>
             
-            <a class="button" href="log-in.php">Filter by Target Group</a>
+            <a class="button" href="log-in.php">Log in to filter</a>
         </form>
     </div>
 
@@ -35,46 +35,45 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
         <header>
             <h1><?= date('F Y'); ?></h1>
         </header>
-        <div class="table">
-            <table>
-                <thead>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    
+                    <?php
+                    foreach ($days as $day)
+                    {
+                    ?>
+                        <th><?= $day; ?></th>
+                    <?php
+                    }
+                    ?>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <?php
+                foreach ($hours as $hour)
+                {
+                ?>
                     <tr>
-                        <th></th>
+                        <th><?= $hour; ?></th>
                         
                         <?php
-                        foreach ($days as $day)
+                        for ($i = 1; $i <= 7; $i++)
                         {
                         ?>
-                            <th><?= $day; ?></th>
+                            <td><!-- TODO: fill with calendar items --></td>
                         <?php
                         }
                         ?>
                     </tr>
-                </thead>
-                
-                <tbody>
-                    <?php
-                    foreach ($hours as $hour)
-                    {
-                    ?>
-                        <tr>
-                            <th><?= $hour; ?></th>
-                            
-                            <?php
-                            for ($i = 1; $i <= 7; $i++)
-                            {
-                            ?>
-                                <td><!-- TODO: fill with calendar items --></td>
-                            <?php
-                            }
-                            ?>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
