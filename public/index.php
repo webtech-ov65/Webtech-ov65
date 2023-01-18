@@ -27,7 +27,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             }
             ?>
             
-            <a class="button" href="log-in.php">Log in to filter</a>
+            <a class="button" href="log-in.php">Filter by Target Group</a>
         </form>
     </div>
 
@@ -35,45 +35,46 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
         <header>
             <h1><?= date('F Y'); ?></h1>
         </header>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    
-                    <?php
-                    foreach ($days as $day)
-                    {
-                    ?>
-                        <th><?= $day; ?></th>
-                    <?php
-                    }
-                    ?>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <?php
-                foreach ($hours as $hour)
-                {
-                ?>
+        <div class="scroller">
+            <table>
+                <thead>
                     <tr>
-                        <th><?= $hour; ?></th>
+                        <th></th>
                         
                         <?php
-                        for ($i = 1; $i <= 7; $i++)
+                        foreach ($days as $day)
                         {
                         ?>
-                            <td><!-- TODO: fill with calendar items --></td>
+                            <th><?= $day; ?></th>
                         <?php
                         }
                         ?>
                     </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                </thead>
+                
+                <tbody>
+                    <?php
+                    foreach ($hours as $hour)
+                    {
+                    ?>
+                        <tr>
+                            <th><?= $hour; ?></th>
+                            
+                            <?php
+                            for ($i = 1; $i <= 7; $i++)
+                            {
+                            ?>
+                                <td><!-- TODO: fill with calendar items --></td>
+                            <?php
+                            }
+                            ?>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div scroller>
     </div>
 </div>
 
