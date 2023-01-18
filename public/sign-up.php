@@ -4,28 +4,27 @@ $page = [
     'main_class' => 'container flex-y center'
 ];
 
+require_once('../private/header.php');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // Keep track of errors
     $errors = [];
     
     // Process input
-    $first_name = trim($_POST['first_name']);
-    $last_name = trim($_POST['last_name']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $confirm_password = trim($_POST['confirm_password']);
+    $name = clean_input($_POST['name']);
+    $email = clean_input($_POST['email']);
+    $password = clean_input($_POST['password']);
+    $confirm_password = clean_input($_POST['confirm_password']);
     
-    // Validate first name
-    if (empty($first_name))
+    // Validate name
+    if (empty($name))
     {
-        array_push($errors, 'Please enter a first name.');
+        array_push($errors, 'Please enter a name.');
     }
-    
-    // Validate last name
-    if (empty($last_name))
+    else if (strlen($name) > 63)
     {
-        array_push($errors, 'Please enter a last name.');
+        array_push($errors, 'Your name can\'t be longer than 63 characters.');
     }
     
     // Validate email
@@ -33,22 +32,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         array_push($errors, 'Please enter an email.');
     }
+    else if (strlen($email) > 255)
+    {
+        array_push($errors, 'Your email can\'t be longer than 255 characters.');
+    }
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        array_push($errors, 'Invalid email format.');
+    }
     
     // Validate password and confirm password
     if (empty($password))
     {
         array_push($errors, 'Please enter a password.');
     }
+    else if ($password != $confirm_password)
+    {
+        array_push($errors, 'The password and confirmation password are not identical.');
+    }
     
     // Check if no errors occurred during validation
     if (count($errors) == 0)
     {
-        // TODO: add user to database and log them in
+        UserManager::create($name, $email, $password);
+        UserManager::log_in($email, $password);
+        
         header('Location: index.php');
     }
 }
-
-require_once('../private/header.php');
 ?>
 <div class="card width-50">
     <header>
@@ -56,16 +67,9 @@ require_once('../private/header.php');
     </header>
     
     <form method="post">
-        <div class="flex-x">
-            <div class="flex-y width-50">
-                <label>First name</label>
-                <input name="first_name" type="text">
-            </div>
-            
-            <div class="flex-y width-50">
-                <label>Last name</label>
-                <input name="last_name" type="text">
-            </div>
+        <div class="flex-y">
+            <label>Name</label>
+            <input name="name" type="text">
         </div>
         
         <div class="flex-y">

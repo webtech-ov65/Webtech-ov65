@@ -13,7 +13,18 @@ $app = [
     'name' => 'Open Agenda'
 ];
 
+// Classes
+require_once('classes/usermanager.php');
+
 // Functions
+function clean_input($input)
+{
+    $input = trim($input);
+    $input = htmlspecialchars($input);
+    
+    return $input;
+}
+
 function get_hours_range($start = 0, $end = 86400, $step = 3600, $format = 'H:i')
 {
     $times = [];

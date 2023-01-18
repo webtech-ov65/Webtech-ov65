@@ -1,17 +1,16 @@
 create table if not exists groups
 (
     id char(36) not null,
-    name varchar(32) not null,
+    name varchar(31) not null,
     primary key (id)
 );
 
 create table if not exists users
 (
     id char(36) not null,
-    first_name varchar(32) not null,
-    last_name varchar(32) not null,
-    email varchar(256) not null,
-    password varchar(512) not null,
+    name varchar(63) not null,
+    email varchar(255) not null,
+    password varchar(255) not null,
     moderator boolean not null default 0,
     primary key (id)
 );
@@ -26,7 +25,7 @@ create table if not exists user_groups
 create table if not exists events
 (
     id char(36) not null,
-    title varchar(256),
+    title varchar(255),
     event_date date not null,
     event_time time not null,
     event_description text,

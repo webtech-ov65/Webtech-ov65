@@ -26,13 +26,28 @@ require_once('bootstrap.php');
                                 <a href="index.php">Home</a>
                             </li>
                             
-                            <li>
-                                <a href="log-in.php">Log in</a>
-                            </li>
-                            
-                            <li>
-                                <a href="sign-up.php">Sign up</a>
-                            </li>
+                            <?php
+                            if (!UserManager::is_logged_in())
+                            {
+                            ?>
+                                <li>
+                                    <a href="log-in.php">Log in</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="sign-up.php">Sign up</a>
+                                </li>
+                            <?php
+                            }
+                            else
+                            {
+                            ?>
+                                <li>
+                                    <a href="log-out.php">Log out</a>
+                                </li>
+                            <?php
+                            }
+                            ?>
                         </ul>
                     </nav>
                 </div>
