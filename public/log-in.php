@@ -4,6 +4,37 @@ $page = [
     'main_class' => 'container flex-y center'
 ];
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    // Keep track of errors
+    $errors = [];
+    
+    // Process input
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    
+    // Validate email
+    if (empty($email))
+    {
+        array_push($errors, 'Please enter an email.');
+    }
+    
+    // Validate password
+    if (empty($password))
+    {
+        array_push($errors, 'Please enter a password.');
+    }
+    
+    // TODO: validate email and password combination
+    
+    // Check if no errors occurred during validation
+    if (count($errors) == 0)
+    {
+        // TODO: log user in
+        header('Location: index.php');
+    }
+}
+
 require_once('../private/header.php');
 ?>
 <div class="card width-30">
@@ -14,16 +45,32 @@ require_once('../private/header.php');
     <form method="post">
         <div class="flex-y">
             <label>Email</label>
-            <input type="text">
+            <input name="email" type="text">
         </div>
         
         <div class="flex-y">
             <label>Password</label>
-            <input type="password">
+            <input name="password" type="password">
         </div>
         
         <button><?= $page['title']; ?></button>
+        
+        <?php
+        if (isset($errors))
+        {
+            echo '<ul class="red">';
+            
+            foreach ($errors as $error)
+            {
+                echo '<li>' . $error . '</li>';
+            }
+            
+            echo '</ul>';
+        }
+        ?>
     </form>
 </div>
+
+<p>New to <?= $app['name']; ?>? <a href="sign-up.php">Sign up</a></p>
 <?php
 require_once('../private/footer.php');
