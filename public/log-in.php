@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     // Check if no errors occurred during validation
     if (count($errors) == 0)
     {
-        // TODO: log user in
+        UserManager::log_in($email, $password);
         header('Location: index.php');
     }
 }

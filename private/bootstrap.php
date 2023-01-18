@@ -13,6 +13,9 @@ $app = [
     'name' => 'Open Agenda'
 ];
 
+// Classes
+require_once('classes/usermanager.php');
+
 // Functions
 function clean_input($input)
 {

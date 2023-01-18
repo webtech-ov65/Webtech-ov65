@@ -46,14 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         array_push($errors, 'Please enter a password.');
     }
+    else if ($password != $confirm_password)
+    {
+        array_push($errors, 'The password and confirmation password are not identical.');
+    }
     
     // Check if no errors occurred during validation
     if (count($errors) == 0)
     {
-        // Hash password
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        UserManager::create($name, $email, $password);
+        UserManager::log_in($email, $password);
         
-        // TODO: add user to database and log them in
         header('Location: index.php');
     }
 }
