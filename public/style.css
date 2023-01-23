@@ -80,9 +80,9 @@ table {
 }
 
 .scroller {
-    overflow-y: scroll;
-    height: 50%;
     display: block;
+    height: 75vh;
+    overflow-y: scroll;
 }
 
 tbody th {

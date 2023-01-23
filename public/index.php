@@ -35,6 +35,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
         <header>
             <h1><?= date('F Y'); ?></h1>
         </header>
+        
         <div class="scroller">
             <table>
                 <thead>
