@@ -8,7 +8,7 @@ require_once('bootstrap.php');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         
-        <title><?= ($page['title'] != null ? $page['title'] . ' - ' : '') . $app['name']; ?></title>
+        <title><?= (isset($page) && isset($page['title']) ? $page['title'] . ' - ' : '') . $app['name']; ?></title>
         <link rel="stylesheet" href="style.css">
     </head>
     
