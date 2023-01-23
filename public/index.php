@@ -85,9 +85,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
                 </tr>
             </tbody>
         </table>
-        <header>
-            <h1><?= date('F Y'); ?></h1>
-        </header>
+        
         <div class="scroller">
             <table>
                 <thead>
@@ -127,7 +125,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
                     ?>
                 </tbody>
             </table>
-        </div scroller>
+        </div>
     </div>
 </div>
 

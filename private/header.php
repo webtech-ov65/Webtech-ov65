@@ -53,4 +53,4 @@ require_once('bootstrap.php');
                 </div>
             </header>
 
-            <main class="<?= $page['main_class'] != null ? $page['main_class'] : 'container'; ?>">
+            <main class="<?= isset($page) && isset($page['main_class']) ? $page['main_class'] : 'container'; ?>">
