@@ -1,8 +1,21 @@
 <?php
 require_once('../private/header.php');
 
+// Pakt de huidige maand en jaar
+if (isset($_GET['month']) && isset($_GET['year'])) {
+    $month = $_GET['month'];
+    $year = $_GET['year'];
+} else {
+    $month = date('n');
+    $year = date('Y');
+}
+
+$num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
 $days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 $hours = get_hours_range();
+
+$first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
 
 // TODO: replace placeholder target groups with database
 $target_groups = ['Business Development', 'Customer Support', 'Research & Development', 'Sales & Marketing'];
@@ -30,12 +43,51 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             <a class="button" href="log-in.php">Filter by Target Group</a>
         </form>
     </div>
-
+    
     <div class="flex-y width-80">
+        <div class="calendar-header">
+            <header>
+                <h1><?= date('F Y', mktime(0, 0, 0, $month, 1, $year)); ?></h1>
+            </header>
+            <div class="button-container">
+                <a href="?month=<?= ($month == 1) ? 12 : $month - 1; ?>&year=<?= ($month == 1) ? $year - 1 : $year; ?>" class="prev-button">&lt;</a>
+                <a href="?month=<?= ($month == 12) ? 1 : $month + 1; ?>&year=<?= ($month == 12) ? $year + 1 : $year; ?>" class="next-button">&gt;</a>
+            </div>
+        </div>
+        <table class="calendar">
+            <thead>
+                <tr>
+                    <?php
+                    for ($i = 0; $i < 7; $i++) {
+                        echo '<th>' . $days[$i] . '</th>';
+                    }
+                    ?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <?php
+                for ($i = 0; $i < $first_day_of_month; $i++) {
+                    echo '<td></td>';
+                }
+
+                for ($day = 1; $day <= $num_days; $day++) {
+                    echo '<td>' . $day . '</td>';
+
+                    if (($day + $first_day_of_month) % 7 == 0) {
+                        echo '</tr><tr>';
+                    }
+                }
+                for ($i = 0; $i < 7 - (($day + $first_day_of_month - 1) % 7); $i++) {
+                    echo '<td></td>';
+                }
+                ?>
+                </tr>
+            </tbody>
+        </table>
         <header>
             <h1><?= date('F Y'); ?></h1>
         </header>
-        
         <div class="scroller">
             <table>
                 <thead>
