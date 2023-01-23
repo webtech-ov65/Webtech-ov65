@@ -6,6 +6,9 @@ $page = [
 
 require_once('../private/header.php');
 
+$email = '';
+$password = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // Keep track of errors
@@ -45,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <form method="post">
         <div class="flex-y">
             <label>Email</label>
-            <input name="email" type="text">
+            <input name="email" type="text" value="<?= $email; ?>">
         </div>
         
         <div class="flex-y">
             <label>Password</label>
-            <input name="password" type="password">
+            <input name="password" type="password" value="<?= $password; ?>">
         </div>
         
         <button><?= $page['title']; ?></button>
