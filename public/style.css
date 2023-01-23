@@ -140,6 +140,15 @@ input {
     padding: var(--padding);
 }
 
+.prev-button, .next-button {
+    font-size: 10px;
+    color: var(--white);
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 15%;
+    background-color: #0284c7;
+  }
+
 /* Components: */
 button, .button {
     background: var(--sky);
@@ -154,7 +163,7 @@ button, .button {
     text-decoration: none;
 }
 
-    button:hover, .button:hover {
+    button:hover, .button:hover, .prev-button:hover, .next-button:hover {
         background: var(--sky-dark);
         color: var(--white);
         transition: var(--transition);
