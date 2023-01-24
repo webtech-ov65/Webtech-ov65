@@ -140,6 +140,10 @@ input {
     padding: var(--padding);
 }
 
+.button-container {
+    float: right;
+  }
+
 .prev-button, .next-button {
     font-size: 10px;
     color: var(--white);
