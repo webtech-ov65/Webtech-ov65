@@ -6,9 +6,14 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
     $month = $_GET['month'];
     $year = $_GET['year'];
 } else {
-    $month = date('n');
+    $month = date('m');
     $year = date('Y');
 }
+
+# Pakt huidige datum
+$currentday = date('d');
+$currentmonth = date('m');
+$currentyear = date('Y');
 
 $num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
@@ -72,7 +77,13 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
                 }
 
                 for ($day = 1; $day <= $num_days; $day++) {
-                    echo '<td>' . $day . '</td>';
+
+                    if ($year == $currentyear && $month == $currentmonth && $day == $currentday) {
+                        echo '<td>' . "<strong>{$day}</strong>" . '</td>';
+                    }
+                    else {
+                        echo '<td>' . $day . '</td>';
+                    }
 
                     if (($day + $first_day_of_month) % 7 == 0) {
                         echo '</tr><tr>';
