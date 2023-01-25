@@ -61,14 +61,13 @@ final class UserManager
         return true;
     }
     
-    // Static functions:
-    public static function is_logged_in()
-    {
-        return isset($_SESSION['user']);
-    }
-    
-    public static function log_out()
+    public function log_out()
     {
         $_SESSION['user'] = null;
+    }
+    
+    public function is_logged_in()
+    {
+        return isset($_SESSION['user']);
     }
 }

@@ -1,7 +1,12 @@
 <?php
-$days = get_days_range();
-$hours = get_hours_range();
+$week_number = $calendarManager->get_week_number();
+$days = $calendarManager->get_days_range();
+$hours = $calendarManager->get_hours_range();
 ?>
+<header>
+    <h2>Week <?= $week_number; ?></h2>
+</header>
+
 <table class="calendar calendar-week">
     <thead>
         <tr>

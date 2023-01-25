@@ -9,7 +9,7 @@ if (isset($_GET['month']) && isset($_GET['year'])) {
 }
 
 $num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-$days = get_days_range();
+$days = $calendarManager->get_days_range();
 $first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
 ?>
 <div class="calendar-header flex-x center">

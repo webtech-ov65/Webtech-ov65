@@ -27,7 +27,7 @@ require_once('../private/bootstrap.php');
                             </li>
                             
                             <?php
-                            if (!UserManager::is_logged_in())
+                            if (!$userManager->is_logged_in())
                             {
                             ?>
                                 <li>

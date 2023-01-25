@@ -20,7 +20,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             
             <form class="flex-y">
                 <?php
-                if (!UserManager::is_logged_in())
+                if (!$userManager->is_logged_in())
                 {
                 ?>
                     <div>
