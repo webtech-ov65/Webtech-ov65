@@ -1,5 +1,13 @@
 <?php
-$week_number = $calendarManager->get_week_number();
+if (isset($_GET['year']) && isset($_GET['month']) && isset($_GET['day']))
+{
+    $week_number = $calendarManager->get_week_number($_GET['year'], $_GET['month'], $_GET['day']);
+}
+else
+{    
+    $week_number = $calendarManager->get_week_number();
+}
+
 $days = $calendarManager->get_days_range();
 $hours = $calendarManager->get_hours_range();
 ?>
