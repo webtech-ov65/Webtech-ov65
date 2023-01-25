@@ -173,6 +173,7 @@ input {
     background: var(--white);
     border-collapse: separate;
     border-radius: var(--border-radius);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
 }
 
     .calendar td, .calendar th {
@@ -208,7 +209,7 @@ button, .button {
     cursor: pointer;
     display: inline-block;
     font-weight: bold;
-    padding: var(--padding-y) calc(var(--padding-x) * 2);
+    padding: calc(var(--padding-y) * .75) calc(var(--padding-x) * 1.5);
     text-align: center;
     text-decoration: none;
 }
@@ -264,8 +265,12 @@ button, .button {
 
 /* Utilities: */
 .gap-2 { gap: calc(var(--gap) * 2); }
+
+.left { text-align: left; }
 .center { align-items: center; }
+
 .red { color: var(--red); }
+
 .width-20 { width: 20%; }
 .width-30 { width: 30%; }
 .width-40 { width: 40%; }

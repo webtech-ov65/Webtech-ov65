@@ -15,22 +15,10 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
         
         <section class="flex-y">
             <header>
-                <h2>Target groups</h2>
+                <h2 class="left">Target groups</h2>
             </header>
             
             <form class="flex-y">
-                <?php
-                foreach ($target_groups as $target_group)
-                {
-                ?>
-                    <div>
-                        <input type="checkbox" checked disabled>
-                        <label><?= $target_group; ?></label>
-                    </div>
-                <?php
-                }
-                ?>
-                
                 <?php
                 if (!UserManager::is_logged_in())
                 {
@@ -39,6 +27,18 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
                         <a class="button" href="log-in.php">Log in</a>
                     </div>
                 <?php
+                }
+                else
+                {
+                    foreach ($target_groups as $target_group)
+                    {
+                    ?>
+                        <div>
+                            <input type="checkbox" checked disabled>
+                            <label><?= $target_group; ?></label>
+                        </div>
+                    <?php
+                    }
                 }
                 ?>
             </form>
