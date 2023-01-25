@@ -1,16 +1,17 @@
 <?php
 // Pakt de huidige maand en jaar
-if (isset($_GET['month']) && isset($_GET['year'])) {
-    $month = min(max($_GET['month'], 1), 12); 
-    $year = min(max($_GET['year'], 1950), 2100); 
+if (isset($_GET['year']) && isset($_GET['month'])) {
+    $year = min(max($_GET['year'], 1950), 2100);
+    $month = min(max($_GET['month'], 1), 12);
 } else {
-    $month = date('n');
     $year = date('Y');
+    $month = date('n');
 }
 
 $num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 $days = $calendarManager->get_days_range();
 $first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
+$selected_day = isset($_GET['day']) ? $_GET['day'] : date('d');
 ?>
 <div class="calendar-header flex-x center">
     <header>
@@ -18,8 +19,8 @@ $first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
     </header>
     
     <div class="right">
-        <a href="?month=<?= ($month == 1) ? 12 : $month - 1; ?>&year=<?= ($month == 1) ? $year - 1 : $year; ?>" class="prev-button">&lt;</a>
-        <a href="?month=<?= ($month == 12) ? 1 : $month + 1; ?>&year=<?= ($month == 12) ? $year + 1 : $year; ?>" class="next-button">&gt;</a>
+        <a href="?year=<?= ($month == 1) ? $year - 1 : $year; ?>&month=<?= ($month == 1) ? 12 : $month - 1; ?>" class="prev-button">&lt;</a>
+        <a href="?year=<?= ($month == 12) ? $year + 1 : $year; ?>&month=<?= ($month == 12) ? 1 : $month + 1; ?>" class="next-button">&gt;</a>
     </div>
 </div>
 
@@ -41,7 +42,8 @@ $first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
         }
 
         for ($day = 1; $day <= $num_days; $day++) {
-            echo '<td>' . $day . '</td>';
+            $css_class = $day == $selected_day ? 'selected' : '';
+            echo '<td><a class="' .  $css_class . '" href="?year=' . $year . '&month=' . $month . '&day=' . $day . '">' . $day . '</td>';
 
             if (($day + $first_day_of_month) % 7 == 0) {
                 echo '</tr><tr>';

@@ -187,6 +187,13 @@ input {
     }
     
     .calendar tr { background: none; }
+    
+    .calendar .selected {
+        background: var(--sky);
+        border-radius: 50%;
+        color: var(--white);
+        display: block;
+    }
 
 .calendar-week { border-collapse: collapse; }
     .calendar-week tbody tr { border-top: var(--border); }
