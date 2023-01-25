@@ -19,8 +19,8 @@ $selected_day = isset($_GET['day']) ? $_GET['day'] : date('d');
     </header>
     
     <div class="right">
-        <a href="?year=<?= ($month == 1) ? $year - 1 : $year; ?>&month=<?= ($month == 1) ? 12 : $month - 1; ?>" class="prev-button">&lt;</a>
-        <a href="?year=<?= ($month == 12) ? $year + 1 : $year; ?>&month=<?= ($month == 12) ? 1 : $month + 1; ?>" class="next-button">&gt;</a>
+        <a href="?year=<?= ($month == 1) ? $year - 1 : $year; ?>&month=<?= ($month == 1) ? 12 : $month - 1; ?>&day=1" class="prev-button">&lt;</a>
+        <a href="?year=<?= ($month == 12) ? $year + 1 : $year; ?>&month=<?= ($month == 12) ? 1 : $month + 1; ?>&day=1" class="next-button">&gt;</a>
     </div>
 </div>
 
