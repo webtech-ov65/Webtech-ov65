@@ -1,27 +1,74 @@
 <?php
 final class UserManager
 {
-    public static function create($name, $email, $password)
+    private $db;
+    
+    public function __construct($db)
     {
+        $this->db = $db;
+    }
+    
+    // Dynamic functions:
+    public function create($name, $email, $password)
+    {
+        $errors = [];
+        $result = $this->db->query("SELECT email FROM users WHERE email = '" . $this->db->real_escape_string($email) . "';");
+        
+        if ($result->num_rows > 0)
+        {
+            // Email is already taken
+            array_push($errors, 'This email is already taken by another user.');
+            
+            return [
+                'succeeded' => false,
+                'errors' => $errors
+            ];
+        }
+        
         // Hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
         
-        // TODO: implement this function
+        $this->db->query("INSERT INTO users (id, name, email, password, moderator) VALUES (
+            '" . guid() . "',
+            '" . $this->db->real_escape_string($name) . "',
+            '" . $this->db->real_escape_string($email) . "',
+            '" . $password . "',
+            0
+        );");
+        
+        return ['succeeded' => true, 'errors' => $errors];
     }
     
+    public function log_in($email, $password)
+    {
+        $result = $this->db->query("SELECT id, password FROM users WHERE email = '" . $this->db->real_escape_string($email) . "';");
+        
+        if ($result->num_rows != 1)
+        {
+            // User does not exist
+            return false;
+        }
+        
+        $user = $result->fetch_assoc();
+        
+        if (!password_verify($password, $user['password']))
+        {
+            // Incorrect password
+            return false;
+        }
+        
+        $_SESSION['user'] = $user['id'];
+        return true;
+    }
+    
+    // Static functions:
     public static function is_logged_in()
     {
-        // TODO: implement this function
-        return false;
-    }
-    
-    public static function log_in($email, $password)
-    {
-        // TODO: implement this function
+        return isset($_SESSION['user']);
     }
     
     public static function log_out()
     {
-        // TODO: implement this function
+        $_SESSION['user'] = null;
     }
 }

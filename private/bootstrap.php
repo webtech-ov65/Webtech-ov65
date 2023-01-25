@@ -13,8 +13,18 @@ $app = [
     'name' => 'Open Agenda'
 ];
 
-// Classes
-require_once('classes/usermanager.php');
+// Database
+$db = new mysqli('localhost', 'root', '', 'openagenda');
+
+if ($db->connect_errno)
+{
+    echo 'Failed to connect to MySQL: ' . $db->connect_error;
+    exit;
+}
 
 // Functions
 require_once('functions.php');
+
+// Classes
+require_once('classes/usermanager.php');
+$userManager = new UserManager($db);

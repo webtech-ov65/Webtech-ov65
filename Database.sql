@@ -53,6 +53,6 @@ create table if not exists comments
     content text not null,
     user_id char(36) not null,
     event_id char(36) not null,
-    approved boolean not null default 0;
+    approved boolean not null default 0,
     primary key (id)
 );

@@ -59,10 +59,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     // Check if no errors occurred during validation
     if (count($errors) == 0)
     {
-        UserManager::create($name, $email, $password);
-        UserManager::log_in($email, $password);
+        $result = $userManager->create($name, $email, $password);
         
-        header('Location: index.php');
+        if (!$result['succeeded'])
+        {
+            $errors = array_merge($errors, $result['errors']);
+        }
+        else
+        {
+            $userManager->log_in($email, $password);
+            header('Location: index.php');
+        }
     }
 }
 ?>
