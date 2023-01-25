@@ -1,5 +1,5 @@
 <?php
-require_once('bootstrap.php');
+require_once('../private/bootstrap.php');
 ?>
 <!DOCTYPE html>
 
@@ -9,7 +9,7 @@ require_once('bootstrap.php');
         <meta name="viewport" content="width=device-width,initial-scale=1">
         
         <title><?= (isset($page) && isset($page['title']) ? $page['title'] . ' - ' : '') . $app['name']; ?></title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="assets/style.css">
     </head>
     
     <body>
@@ -27,7 +27,7 @@ require_once('bootstrap.php');
                             </li>
                             
                             <?php
-                            if (!UserManager::is_logged_in())
+                            if (!$userManager->is_logged_in())
                             {
                             ?>
                                 <li>

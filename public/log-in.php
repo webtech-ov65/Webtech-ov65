@@ -4,7 +4,7 @@ $page = [
     'main_class' => 'container flex-y center'
 ];
 
-require_once('../private/header.php');
+require_once('../private/components/header.php');
 
 $email = '';
 $password = '';
@@ -30,13 +30,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         array_push($errors, 'Please enter a password.');
     }
     
-    // TODO: validate email and password combination
-    
     // Check if no errors occurred during validation
     if (count($errors) == 0)
     {
-        UserManager::log_in($email, $password);
-        header('Location: index.php');
+        $result = $userManager->log_in($email, $password);
+        
+        if (!$result)
+        {
+            array_push($errors, 'Invalid email and password combination.');
+        }
+        else
+        {
+            // Login was successful
+            header('Location: index.php');
+        }
     }
 }
 ?>
@@ -76,4 +83,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <p>New to <?= $app['name']; ?>? <a href="sign-up.php">Sign up</a></p>
 <?php
-require_once('../private/footer.php');
+require_once('../private/components/footer.php');

@@ -13,32 +13,21 @@ $app = [
     'name' => 'Open Agenda'
 ];
 
-// Classes
-require_once('classes/usermanager.php');
+// Database
+$db = new mysqli('localhost', 'root', '', 'openagenda');
+
+if ($db->connect_errno)
+{
+    echo 'Failed to connect to MySQL: ' . $db->connect_error;
+    exit;
+}
 
 // Functions
-function clean_input($input)
-{
-    $input = trim($input);
-    $input = htmlspecialchars($input);
-    
-    return $input;
-}
+require_once('functions.php');
 
-function get_hours_range($start = 0, $end = 86400, $step = 3600, $format = 'H:i')
-{
-    $times = [];
-    
-    foreach (range($start, $end, $step) as $timestamp)
-    {
-        $hour_mins = gmdate('H:i', $timestamp);
-        
-        if (!empty($format))
-            $times[$hour_mins] = gmdate($format, $timestamp);
-        else
-            $times[$hour_mins] = $hour_mins;
-    }
-    
-    return $times;
-}
- 
+// Classes
+require_once('classes/calendarmanager.php');
+require_once('classes/usermanager.php');
+
+$calendarManager = new CalendarManager($db);
+$userManager = new UserManager($db);

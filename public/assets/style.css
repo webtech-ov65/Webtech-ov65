@@ -1,3 +1,36 @@
+/* Fonts: */
+@font-face {
+    font-display: swap;
+    font-family: Avenir Next;
+    font-style: italic;
+    font-weight: 400;
+    src: url(fonts/avenir-next/italic-400.woff2) format('woff2'), url(fonts/avenir-next/italic-400.woff) format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Avenir Next;
+    font-style: italic;
+    font-weight: 600;
+    src: url(fonts/avenir-next/italic-600.woff2) format('woff2'), url(fonts/avenir-next/italic-600.woff) format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Avenir Next;
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/avenir-next/normal-400.woff2) format('woff2'), url(fonts/avenir-next/normal-400.woff) format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Avenir Next;
+    font-style: normal;
+    font-weight: 600;
+    src: url(fonts/avenir-next/normal-600.woff2) format('woff2'), url(fonts/avenir-next/normal-600.woff) format('woff');
+}
+
 /* Defaults: */
 :root {
     --border: 1px solid var(--border-color);
@@ -11,20 +44,16 @@
     --transition: all .5s;
     /* Colors (https://tailwindcss.com/docs/customizing-colors): */
     --black: #262626;
+    --black-dark: #000;
     --light: #f5f5f5;
     --red: #dc2626;
     --sky: #0284c7;
     --sky-dark: #0369a1;
-    --white: #fafafa;
+    --white: #fff;
 }
 
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
-html {
-    height: 100%;
-}
+*, ::after, ::before { box-sizing: border-box; }
+html { height: 100%; }
 
 body, button, input {
     /* Apply antialiasing */
@@ -34,7 +63,7 @@ body, button, input {
     color: var(--black);
     
     /* Use operating system font */
-    font: 1.125rem system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font: 1.125rem Avenir Next, system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     line-height: var(--line-height);
 }
 
@@ -47,15 +76,15 @@ body {
     margin: 0;
 }
 
-    body > .content {
-        flex: 1 0 auto;
-    }
-    
-    body > footer {
-        flex-shrink: 0;
-    }
+    body > .content { flex: 1 0 auto; }
+    body > footer { flex-shrink: 0; }
 
-a { color: var(--sky); }
+a {
+    color: var(--sky);
+    font-weight: bold;
+    text-decoration: none;
+}
+
     a:hover { color: var(--sky-dark); }
 
 h1, h2, h3 {
@@ -81,13 +110,11 @@ table {
 
 .scroller {
     display: block;
-    height: 75vh;
+    height: 80vh;
     overflow-y: scroll;
 }
 
-tbody th {
-    text-align: left;
-}
+tbody th { text-align: left; }
 
 td, th {
     border: var(--border);
@@ -105,7 +132,7 @@ ul {
 .container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 96rem;
+    max-width: 112rem;
     padding-left: var(--padding-x);
     padding-right: var(--padding-x);
     width: 100%;
@@ -132,6 +159,7 @@ form {
 }
 
     form > div, form .flex-y { gap: calc(var(--gap) / 4) !important; }
+    form > .flex-x { gap: var(--gap) !important; }
     form > button { margin-top: var(--gap); }
 
 input {
@@ -140,9 +168,28 @@ input {
     padding: var(--padding);
 }
 
-.button-container {
-    float: right;
-  }
+/* Calendars: */
+.calendar {
+    background: var(--white);
+    border-collapse: separate;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+}
+
+    .calendar td, .calendar th {
+        border: 0;
+        padding: calc(var(--padding-y) / 1.5) calc(var(--padding-x) / 1.5);
+    }
+    
+    .calendar td {
+        border-radius: 50%;
+        text-align: center;
+    }
+    
+    .calendar tr { background: none; }
+
+.calendar-week { border-collapse: collapse; }
+    .calendar-week tbody tr { border-top: var(--border); }
 
 .prev-button, .next-button {
     font-size: 10px;
@@ -151,7 +198,7 @@ input {
     padding: 5px;
     border-radius: 15%;
     background-color: #0284c7;
-  }
+}
 
 /* Components: */
 button, .button {
@@ -162,7 +209,7 @@ button, .button {
     cursor: pointer;
     display: inline-block;
     font-weight: bold;
-    padding: var(--padding);
+    padding: calc(var(--padding-y) * .75) calc(var(--padding-x) * 1.5);
     text-align: center;
     text-decoration: none;
 }
@@ -177,6 +224,7 @@ button, .button {
     background: var(--white);
     border: var(--border);
     border-radius: var(--border-radius);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
     display: flex;
     flex-direction: column;
     gap: var(--gap);
@@ -185,6 +233,7 @@ button, .button {
 
 .navbar {
     background: var(--white);
+    box-shadow: 0 3px 6px rgb(0 0 0 / 4%);
     height: 4rem;
 }
 
@@ -197,11 +246,14 @@ button, .button {
         height: inherit;
     }
     
-    /* TODO: replace background with image of our brand */
+    .navbar a { color: var(--black); }
+        .navbar a:hover { color: var(--black-dark); }
+    
     .navbar .brand {
-        aspect-ratio: 5 / 1;
-        background: var(--border-color);
-        height: 3rem;
+        aspect-ratio: 6 / 1;
+        background: url(images/brand.png);
+        background-size: cover;
+        height: 1.5rem;
     }
     
     .navbar ul {
@@ -212,14 +264,21 @@ button, .button {
     }
 
 /* Utilities: */
+.gap-2 { gap: calc(var(--gap) * 2); }
+
+.left { text-align: left; }
 .center { align-items: center; }
+
 .red { color: var(--red); }
+
 .width-20 { width: 20%; }
 .width-30 { width: 30%; }
+.width-40 { width: 40%; }
 .width-50 { width: 50%; }
+.width-70 { width: 70%; }
 .width-80 { width: 80%; }
 
 /* Responsiveness: */
 @media only screen and (max-width: 992px) {
-    .width-20, .width-30, .width-50, .width-80 { width: 100%; }
+    .width-20, .width-30, .width-40, .width-50, .width-70, .width-80 { width: 100%; }
 }
