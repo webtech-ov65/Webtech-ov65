@@ -55,6 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         array_push($errors, 'The password and confirmation password are not identical.');
     }
+    else if (strlen($password) < 8)
+    {
+        array_push($errors, 'Your password must be 8 characters or longer.');
+    }
     
     // Check if no errors occurred during validation
     if (count($errors) == 0)
