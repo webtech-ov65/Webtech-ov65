@@ -30,8 +30,16 @@ final class CalendarManager
         return $times;
     }
     
-    public function get_week_number()
+    public function get_week_number($year = null, $month = null, $day = null)
     {
-        return intval(date('W'));
+        if (isset($year) && isset($month) && isset($day))
+        {
+            $date = new DateTime($year . '-' . $month . '-' . $day);
+            return intval($date->format('W'));
+        }
+        else
+        {
+            return intval(date('W'));
+        }
     }
 }
