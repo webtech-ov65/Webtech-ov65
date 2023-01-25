@@ -4,7 +4,7 @@ $page = [
     'main_class' => 'container flex-y center'
 ];
 
-require_once('../private/header.php');
+require_once('../private/components/header.php');
 
 $name = '';
 $email = '';
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
 }
 ?>
-<div class="card width-50">
+<div class="card width-40">
     <header>
         <h1><?= $page['title']; ?></h1>
     </header>
@@ -114,4 +114,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <p>Already have an account? <a href="log-in.php">Log in</a></p>
 <?php
-require_once('../private/footer.php');
+require_once('../private/components/footer.php');

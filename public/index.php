@@ -1,5 +1,5 @@
 <?php
-require_once('../private/header.php');
+require_once('../private/components/header.php');
 
 // Pakt de huidige maand en jaar
 if (isset($_GET['month']) && isset($_GET['year'])) {
@@ -150,4 +150,4 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
     </section>
 </div>
 <?php
-require_once('../private/footer.php');
+require_once('../private/components/footer.php');

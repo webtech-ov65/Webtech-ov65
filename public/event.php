@@ -11,7 +11,7 @@ $date = '2023-01-17';
 $time = '14:00';
 $day = date('l', strtotime($date));
 
-require_once('../private/header.php');
+require_once('../private/components/header.php');
 ?>
 <div class="card width-80">
     <header>
@@ -64,4 +64,4 @@ require_once('../private/header.php');
     
 </div>
 <?php
-require_once('../private/footer.php');
+require_once('../private/components/footer.php');

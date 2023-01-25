@@ -15,16 +15,11 @@
     --red: #dc2626;
     --sky: #0284c7;
     --sky-dark: #0369a1;
-    --white: #fafafa;
+    --white: #fff;
 }
 
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
-html {
-    height: 100%;
-}
+*, ::after, ::before { box-sizing: border-box; }
+html { height: 100%; }
 
 body, button, input {
     /* Apply antialiasing */
@@ -47,15 +42,14 @@ body {
     margin: 0;
 }
 
-    body > .content {
-        flex: 1 0 auto;
-    }
-    
-    body > footer {
-        flex-shrink: 0;
-    }
+    body > .content { flex: 1 0 auto; }
+    body > footer { flex-shrink: 0; }
 
-a { color: var(--sky); }
+a {
+    color: var(--sky);
+    text-decoration: none;
+}
+
     a:hover { color: var(--sky-dark); }
 
 h1, h2, h3 {
@@ -85,9 +79,7 @@ table {
     overflow-y: scroll;
 }
 
-tbody th {
-    text-align: left;
-}
+tbody th { text-align: left; }
 
 td, th {
     border: var(--border);
@@ -132,6 +124,7 @@ form {
 }
 
     form > div, form .flex-y { gap: calc(var(--gap) / 4) !important; }
+    form > .flex-x { gap: var(--gap) !important; }
     form > button { margin-top: var(--gap); }
 
 input {
@@ -177,6 +170,7 @@ button, .button {
     background: var(--white);
     border: var(--border);
     border-radius: var(--border-radius);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
     display: flex;
     flex-direction: column;
     gap: var(--gap);
@@ -185,6 +179,7 @@ button, .button {
 
 .navbar {
     background: var(--white);
+    box-shadow: 0 3px 6px rgb(0 0 0 / 4%);
     height: 4rem;
 }
 
@@ -199,9 +194,10 @@ button, .button {
     
     /* TODO: replace background with image of our brand */
     .navbar .brand {
-        aspect-ratio: 5 / 1;
-        background: var(--border-color);
-        height: 3rem;
+        aspect-ratio: 6 / 1;
+        background: url(images/brand.png);
+        background-size: cover;
+        height: 1.5rem;
     }
     
     .navbar ul {
@@ -216,6 +212,7 @@ button, .button {
 .red { color: var(--red); }
 .width-20 { width: 20%; }
 .width-30 { width: 30%; }
+.width-40 { width: 40%; }
 .width-50 { width: 50%; }
 .width-80 { width: 80%; }
 
