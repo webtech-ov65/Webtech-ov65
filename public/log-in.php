@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
 }
 ?>
-<div class="card width-40">
+<div class="card width-30">
     <header>
         <h1><?= $page['title']; ?></h1>
     </header>
