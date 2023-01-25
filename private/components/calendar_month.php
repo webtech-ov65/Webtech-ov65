@@ -1,8 +1,8 @@
 <?php
 // Pakt de huidige maand en jaar
 if (isset($_GET['month']) && isset($_GET['year'])) {
-    $month = $_GET['month'];
-    $year = $_GET['year'];
+    $month = min(max($_GET['month'], 1), 12); 
+    $year = min(max($_GET['year'], 1950), 2100); 
 } else {
     $month = date('n');
     $year = date('Y');
@@ -48,7 +48,9 @@ $first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
             }
         }
         for ($i = 0; $i < 7 - (($day + $first_day_of_month - 1) % 7); $i++) {
-            echo '<td></td>';
+            if((7 - (($day + $first_day_of_month - 1) % 7)) != 7) {
+                echo '<td></td>';
+                }
         }
         ?>
         </tr>
