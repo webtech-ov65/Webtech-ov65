@@ -40,6 +40,21 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             
             <!-- TODO: Display list of user requests -->
 
+
+            <!-- Example placeholder -->
+            <p style='display: inline'>
+                Bot
+
+                <button class="small-button accept-button">
+                    Accept
+                </button>
+
+                <button class="small-button decline-button">
+                    Decline
+                </button>
+
+            </p>    
+ 
         </section>
 
         <section class="flex-y">
@@ -48,6 +63,20 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             </header>
 
             <!-- TODO: Display list of users -->
+
+            <!-- Example placeholder -->
+            <p style='display: inline'>
+                Admin
+
+                <button class="small-button block-button">
+                    Block
+                </button>
+
+                <button class="small-button delete-button">
+                    Delete
+                </button>
+
+            </p> 
 
         </section>
     </div>

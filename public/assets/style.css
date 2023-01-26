@@ -227,6 +227,30 @@ button, .button {
         transition: var(--transition);
     }
 
+.small-button {
+    font-size: 10px;
+    color: var(--white);
+    text-decoration: none;
+    padding: 2px;
+    border-radius: 15%;
+}  
+
+.accept-button {
+    background-color: #16c702;
+}
+
+.decline-button {
+    background-color: #c70202;
+}
+
+.delete-button {
+    background-color: #c70202;
+}
+
+.block-button {
+    background-color: #0284c7;
+}
+
 .card {
     background: var(--white);
     border: var(--border);
