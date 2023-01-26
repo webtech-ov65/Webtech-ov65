@@ -20,25 +20,14 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             
             <form class="flex-y">
                 <?php
-                if (!$userManager->is_logged_in())
+                foreach ($target_groups as $target_group)
                 {
                 ?>
                     <div>
-                        <a class="button" href="log-in.php">Log in</a>
+                        <input type="checkbox" checked disabled>
+                        <label><?= $target_group; ?></label>
                     </div>
                 <?php
-                }
-                else
-                {
-                    foreach ($target_groups as $target_group)
-                    {
-                    ?>
-                        <div>
-                            <input type="checkbox" checked disabled>
-                            <label><?= $target_group; ?></label>
-                        </div>
-                    <?php
-                    }
                 }
                 ?>
             </form>
