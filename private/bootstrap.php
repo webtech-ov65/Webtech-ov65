@@ -9,7 +9,9 @@ session_start();
 
 // Configuration
 $app = [
+    'authors' => ['Fadi Aboushamma', 'Joey Blankendaal', 'Mitchell Zijp'],
     'calendar_constant' => CAL_GREGORIAN,
+    'description' => 'Open Agenda is a web application to manage events designed for large companies.',
     'name' => 'Open Agenda'
 ];
 

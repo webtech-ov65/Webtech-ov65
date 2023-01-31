@@ -3,7 +3,7 @@
         
         <footer class="navbar">
             <div class="container">
-                <p>&copy; <?= date('Y'); ?> <?= $app['name']; ?>. All rights reserved.</p>
+                <p>&copy; <?= date('Y'); ?> <?= join(', ', $app['authors']); ?>. All rights reserved.</p>
             </div>
         </footer>
         

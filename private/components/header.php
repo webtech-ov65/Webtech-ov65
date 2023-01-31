@@ -5,6 +5,7 @@ require_once('../private/bootstrap.php');
 
 <html>
     <head>
+        <!-- Rendering meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         
@@ -13,6 +14,11 @@ require_once('../private/bootstrap.php');
         <!-- Stylesheets -->
         <link rel="stylesheet" href="assets/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+        
+        <!-- Search engine meta tags -->
+        <meta name="author" content="<?= join(', ', $app['authors']) ?>">
+        <meta name="description" content="<?= isset($page) && isset($page['description']) ? $page['description'] : $app['description']; ?>">
+        <meta name="robots" content="index,follow">
     </head>
     
     <body>
