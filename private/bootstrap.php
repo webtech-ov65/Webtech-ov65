@@ -27,7 +27,9 @@ require_once('functions.php');
 
 // Classes
 require_once('classes/calendarmanager.php');
+require_once('classes/groupmanager.php');
 require_once('classes/usermanager.php');
 
 $calendarManager = new CalendarManager($db);
+$groupManager = new GroupManager($db);
 $userManager = new UserManager($db);

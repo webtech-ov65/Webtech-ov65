@@ -14,23 +14,9 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
         </section>
         
         <section class="flex-y">
-            <header>
-                <h2 class="left">Target groups</h2>
-            </header>
-            
-            <form class="flex-y">
-                <?php
-                foreach ($target_groups as $target_group)
-                {
-                ?>
-                    <div>
-                        <input type="checkbox" checked disabled>
-                        <label><?= $target_group; ?></label>
-                    </div>
-                <?php
-                }
-                ?>
-            </form>
+            <?php
+            require_once('../private/components/target_groups.php');
+            ?>
         </section>
 
         <section class="flex-y">

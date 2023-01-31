@@ -8,7 +8,6 @@ final class UserManager
         $this->db = $db;
     }
     
-    // Dynamic functions:
     public function create($name, $email, $password)
     {
         $errors = [];

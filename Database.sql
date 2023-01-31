@@ -56,3 +56,9 @@ create table if not exists comments
     approved boolean not null default 0,
     primary key (id)
 );
+
+insert into groups (id, name) values
+    ("85c48a26-4cab-4776-811e-8d74f67400c0", "Business Development"),
+    ("77cbd797-4b4e-475b-b79c-e6d12a33b67b", "Customer Support"),
+    ("3ddc6681-3ba0-49ef-b172-b6daf81e44c8", "Research & Development"),
+    ("22d1f803-7043-4601-ba7d-4921df6539db", "Sales & Marketing");
