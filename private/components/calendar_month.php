@@ -1,8 +1,8 @@
 <?php
 // Pakt de huidige maand en jaar
 if (isset($_GET['year']) && isset($_GET['month'])) {
-    $year = min(max($_GET['year'], 1950), 2100);
-    $month = min(max($_GET['month'], 1), 12);
+    $year = min(max(clean_input($_GET['year']), 1950), 2100);
+    $month = min(max(clean_input($_GET['month']), 1), 12);
 } else {
     $year = date('Y');
     $month = date('n');
@@ -11,7 +11,7 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 $num_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 $days = $calendarManager->get_days_range();
 $first_day_of_month = date('N', mktime(0, 0, 0, $month, 1, $year))-1;
-$selected_day = isset($_GET['day']) ? $_GET['day'] : date('d');
+$selected_day = isset($_GET['day']) ? clean_input($_GET['day']) : date('d');
 ?>
 <div class="calendar-header flex-x center">
     <header>

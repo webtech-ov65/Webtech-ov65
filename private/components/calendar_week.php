@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['year']) && isset($_GET['month']) && isset($_GET['day']))
 {
-    $week_number = $calendarManager->get_week_number($_GET['year'], $_GET['month'], $_GET['day']);
+    $week_number = $calendarManager->get_week_number(clean_input($_GET['year']), clean_input($_GET['month']), clean_input($_GET['day']));
 }
 else
 {    
