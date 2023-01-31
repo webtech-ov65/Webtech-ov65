@@ -12,6 +12,7 @@ $days = $calendarManager->get_days_range();
 $hours = $calendarManager->get_hours_range();
 ?>
 <header>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <h2>Week <?= $week_number; ?></h2>
 </header>
 
@@ -43,7 +44,7 @@ $hours = $calendarManager->get_hours_range();
                 for ($i = 1; $i <= 7; $i++)
                 {
                 ?>
-                    <td><!-- TODO: fill with calendar items --></td>
+                    <td onclick="createBoxAndShowPopup(event, this)"></td>
                 <?php
                 }
                 ?>
@@ -53,3 +54,5 @@ $hours = $calendarManager->get_hours_range();
         ?>
     </tbody>
 </table>
+
+<script src="../public/assets/script.js"></script>
