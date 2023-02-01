@@ -1,8 +1,5 @@
 <?php
 require_once('../private/components/header.php');
-
-// TODO: replace placeholder target groups with database
-$target_groups = ['Business Development', 'Customer Support', 'Research & Development', 'Sales & Marketing'];
 ?>
 
 <div class="flex-x">
@@ -19,6 +16,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             ?>
         </section>
 
+        <!-- Additional features -->
         <section class="flex-y">
             <header>
                 <h2 class="left">User requests</h2>
@@ -29,7 +27,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
 
             <!-- Example placeholder -->
             <p style='display: inline'>
-                Bot
+                - Bot
 
                 <button class="small-button accept-button">
                     Accept
@@ -50,9 +48,10 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
 
             <!-- TODO: Display list of users -->
 
+
             <!-- Example placeholder -->
             <p style='display: inline'>
-                Admin
+                - Admin
 
                 <button class="small-button block-button">
                     Block
@@ -65,6 +64,7 @@ $target_groups = ['Business Development', 'Customer Support', 'Research & Develo
             </p> 
 
         </section>
+    
     </div>
     
     <div class="flex-y width-70">
