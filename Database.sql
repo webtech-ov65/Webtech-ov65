@@ -11,7 +11,8 @@ create table if not exists users
     name varchar(63) not null,
     email varchar(255) not null,
     password varchar(255) not null,
-    moderator boolean not null default 0,
+    is_accepted boolean not null default 0,
+    is_admin boolean not null default 0,
     primary key (id)
 );
 
@@ -39,13 +40,6 @@ create table if not exists event_groups
     primary key (event_id, group_id)
 );
 
-create table if not exists admins
-(
-    user_id char(36) not null,
-    group_id char(36) not null,
-    primary key (user_id, group_id)
-);
-
 create table if not exists comments
 (
     id char(36) not null,
@@ -57,8 +51,14 @@ create table if not exists comments
     primary key (id)
 );
 
-insert into groups (id, name) values
-    ("85c48a26-4cab-4776-811e-8d74f67400c0", "Business Development"),
-    ("77cbd797-4b4e-475b-b79c-e6d12a33b67b", "Customer Support"),
-    ("3ddc6681-3ba0-49ef-b172-b6daf81e44c8", "Research & Development"),
-    ("22d1f803-7043-4601-ba7d-4921df6539db", "Sales & Marketing");
+insert into groups
+    (id,                                        name) values
+    ("85c48a26-4cab-4776-811e-8d74f67400c0",    "Business Development"),
+    ("77cbd797-4b4e-475b-b79c-e6d12a33b67b",    "Customer Support"),
+    ("3ddc6681-3ba0-49ef-b172-b6daf81e44c8",    "Research & Development"),
+    ("22d1f803-7043-4601-ba7d-4921df6539db",    "Sales & Marketing");
+
+insert into users
+    (id,                                        name,       email,                  password,                                                       is_accepted,    is_admin) values
+    ("7e4140af-b7e7-4e4f-83b6-333d93476552",    "Admin",    "admin@openagenda.io",  "$2y$10$yBASk27KEyCbpP5TahXKG.WFJZxsgqbSHoPLmBZSFFliQ.DDj2LOu", true,           true),
+    ("cac6ac5e-4445-4dd7-b128-090d0547c031",    "Demo",     "demo@openagenda.io",   "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu", true,           false);

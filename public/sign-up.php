@@ -71,8 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         }
         else
         {
-            $userManager->log_in($email, $password);
-            header('Location: index.php');
+            // Do nothing, wait for admin acceptance
         }
     }
 }
@@ -110,14 +109,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <?php
         if (isset($errors))
         {
-            echo '<ul class="red">';
-            
-            foreach ($errors as $error)
+            if (count($errors) > 0)
             {
-                echo '<li>' . $error . '</li>';
+                echo '<ul class="red">';
+                
+                foreach ($errors as $error)
+                {
+                    echo '<li>' . $error . '</li>';
+                }
+                
+                echo '</ul>';
             }
-            
-            echo '</ul>';
+            else
+            {
+                echo '<p class="green">Your account has been successfully created. Please wait to be accepted by an administrator to log in. Meanwhile, <a href="index.php">click here</a> to return to the homepage.</p>';
+            }
         }
         ?>
     </form>

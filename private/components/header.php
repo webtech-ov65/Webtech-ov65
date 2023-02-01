@@ -50,6 +50,14 @@ require_once('../private/bootstrap.php');
                             }
                             else
                             {
+                                if ($userManager->is_admin())
+                                {
+                                ?>
+                                    <li>
+                                        <a href="admin.php">Admin</a>
+                                    </li>
+                                <?php
+                                }
                             ?>
                                 <li>
                                     <a href="log-out.php">Log out</a>

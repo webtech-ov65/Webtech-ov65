@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $result = $userManager->log_in($email, $password);
         
-        if (!$result)
+        if (!$result['succeeded'])
         {
-            array_push($errors, 'Invalid email and password combination.');
+            $errors = array_merge($errors, $result['errors']);
         }
         else
         {
