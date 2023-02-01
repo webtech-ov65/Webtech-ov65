@@ -26,18 +26,21 @@ require_once('../private/components/header.php');
 
 
             <!-- Example placeholder -->
-            <p style='display: inline'>
-                - Bot
+            <div style='display: flex'>
+                <p>
+                    - Bot
+                </p>
 
-                <button class="small-button accept-button">
-                    Accept
-                </button>
+                <div style='display: inline-block; margin-left: auto'>
+                    <button class="small-button accept-button">
+                        Accept
+                    </button>
 
-                <button class="small-button decline-button">
-                    Decline
-                </button>
-
-            </p>    
+                    <button class="small-button decline-button">
+                        Decline
+                    </button>
+                </div>
+            </div>
  
         </section>
 
@@ -49,19 +52,23 @@ require_once('../private/components/header.php');
             <!-- TODO: Display list of users -->
 
 
+
             <!-- Example placeholder -->
-            <p style='display: inline'>
-                - Admin
+            <div style='display: flex'>
+                <p>
+                    - Admin
+                </p>
 
-                <button class="small-button block-button">
-                    Block
-                </button>
+                <div style='display: inline-block; margin-left: auto'>
+                    <button class="small-button block-button">
+                        Block
+                    </button>
 
-                <button class="small-button delete-button">
-                    Delete
-                </button>
-
-            </p> 
+                    <button class="small-button delete-button">
+                        Delete
+                    </button>
+                </div>
+            </div>
 
         </section>
     
