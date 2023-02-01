@@ -36,15 +36,21 @@ final class UserManager
         return ['succeeded' => true, 'errors' => $errors];
     }
     
-    public function get_accepted_users()
+    public function get_accepted_users($limit = null)
     {
-        $result = $this->db->query("SELECT * FROM users WHERE is_accepted = 1;");
+        $result = $this->db->query("SELECT * FROM users WHERE is_accepted = 1" . (isset($limit) ? " LIMIT " . $limit : "") . ";");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
-    public function get_pending_users()
+    public function get_pending_users($limit = null)
     {
-        $result = $this->db->query("SELECT * FROM users WHERE is_accepted = 0;");
+        $result = $this->db->query("SELECT * FROM users WHERE is_accepted = 0" . (isset($limit) ? " LIMIT " . $limit : "") . ";");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function get_users()
+    {
+        $result = $this->db->query("SELECT * FROM users ORDER BY name");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     

@@ -51,6 +51,7 @@
     --sky: #0284c7;
     --sky-dark: #0369a1;
     --white: #fff;
+    --yellow: #ca8a04;
 }
 
 *, ::after, ::before { box-sizing: border-box; }
@@ -450,7 +451,7 @@ button, .button {
     
     .navbar ul {
         display: flex;
-        gap: calc(var(--gap) * 3);
+        gap: calc(var(--gap) * 4);
         list-style-type: none;
         padding: 0;
     }
@@ -463,8 +464,11 @@ button, .button {
 .left { text-align: left; }
 .center { align-items: center; }
 
+.bold { font-weight: bold; }
+
 .green { color: var(--green); }
 .red { color: var(--red); }
+.yellow { color: var(--yellow); }
 
 .width-20 { width: 20%; }
 .width-30 { width: 30%; }

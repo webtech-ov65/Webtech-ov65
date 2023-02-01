@@ -28,33 +28,39 @@ if (!$userManager->is_admin())
             </header>
             
             <?php
-            foreach ($userManager->get_pending_users() as $user)
+            $pending_users = $userManager->get_pending_users(5);
+            
+            if (count($pending_users) == 0)
             {
             ?>
-                <div class="flex-x center">
-                    <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
-
-                    <?php
-                    // Prevent actions on yourself
-                    if ($user['id'] != $userManager->get_logged_in_user_id())
-                    {
-                    ?>
-                        <div class="right">
-                            <form class="inline-block" action="admin-accept.php" method="post">
-                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                                <button class="small-button accept-button">Accept</button>
-                            </form>
-
-                            <form class="inline-block" action="admin-reject-delete.php" method="post">
-                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                                <button class="small-button decline-button">Reject</button>
-                            </form>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                </div>
+                <p>There are no pending users.</p>
             <?php
+            }
+            else
+            {
+                foreach ($pending_users as $user)
+                {
+                ?>
+                    <div class="flex-x center">
+                        <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
+
+                        <?php
+                        // Prevent actions on yourself
+                        if ($user['id'] != $userManager->get_logged_in_user_id())
+                        {
+                        ?>
+                            <div class="right">
+                                <?php
+                                require('../private/components/button_accept.php');
+                                require('../private/components/button_reject.php');
+                                ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                <?php
+                }
             }
             ?>
         </section>
@@ -65,7 +71,7 @@ if (!$userManager->is_admin())
             </header>
 
             <?php
-            foreach ($userManager->get_accepted_users() as $user)
+            foreach ($userManager->get_accepted_users(5) as $user)
             {
             ?>
                 <div class="flex-x">
@@ -78,17 +84,9 @@ if (!$userManager->is_admin())
                     ?>
                         <div class="right">
                             <?php
-                            $is_blocked = $userManager->is_blocked($user['id']);
+                            require('../private/components/button_block.php');
+                            require('../private/components/button_delete.php');
                             ?>
-                            <form class="inline-block" action="admin-<?= $is_blocked ? 'un' : ''; ?>block.php" method="post">
-                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                                <button class="small-button block-button"><?= $is_blocked ? 'Unb' : 'B'; ?>lock</button>
-                            </form>
-
-                            <form class="inline-block" action="admin-reject-delete.php" method="post">
-                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                                <button class="small-button delete-button">Delete</button>
-                            </form>
                         </div>
                     <?php
                     }
@@ -97,6 +95,8 @@ if (!$userManager->is_admin())
             <?php
             }
             ?>
+            
+            <a href="admin-users.php">View all users in detail</a>
         </section>
     </div>
     

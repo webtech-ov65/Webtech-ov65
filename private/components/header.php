@@ -54,7 +54,7 @@ require_once('../private/bootstrap.php');
                                 {
                                 ?>
                                     <li>
-                                        <a href="admin.php">Admin</a>
+                                        <a href="admin.php">Admin Section</a>
                                     </li>
                                 <?php
                                 }
