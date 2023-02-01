@@ -285,16 +285,20 @@ input {
     cursor: move;
 }
 
-.close-button {
+.close-popup {
+    position: absolute;
+    padding: 5px;
+    left: 93%;
+    top: 3px;
     color: grey;
     background-color: rgba(255, 255, 255, 0);
-    position: absolute;
-    margin-top: -7px;
-    right: 0;
     border-radius: 50%;
+    width: 30px;
+    line-height: 20px;
+    text-align: center;
 }
 
-.close-button:hover {
+.close-popup:hover {
     color: grey;
     display: block;
     background-color: rgba(225, 225, 225);
