@@ -56,7 +56,7 @@ function showPopup(e, cell) {
 
     var closeButton = document.createElement("button");
     closeButton.innerHTML = "X";
-    closeButton.classList.add("close-button");
+    closeButton.classList.add("close-popup");
     topBar.appendChild(closeButton);
     closeButton.addEventListener("click", closePopup);
     popup.appendChild(topBar);
