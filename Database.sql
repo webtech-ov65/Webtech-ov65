@@ -12,7 +12,8 @@ create table if not exists users
     name varchar(63) not null,
     email varchar(255) not null,
     password varchar(255) not null,
-    is_accepted int(1) not null default 0,
+    is_accepted int(1) not null default 0, -- 1: accepted, 0: pending, -1: rejected/deleted
+    is_blocked boolean not null default 0,
     is_admin boolean not null default 0,
     primary key (id),
     unique (email)
@@ -61,9 +62,9 @@ insert into groups
     ("22d1f803-7043-4601-ba7d-4921df6539db",    "Sales & Marketing");
 
 insert into users
-    (id,                                        name,       email,                  password,                                                           is_accepted,    is_admin) values
-    ("7e4140af-b7e7-4e4f-83b6-333d93476552",    "Admin",    "admin@openagenda.io",  "$2y$10$yBASk27KEyCbpP5TahXKG.WFJZxsgqbSHoPLmBZSFFliQ.DDj2LOu",     1,              true),
-    ("cac6ac5e-4445-4dd7-b128-090d0547c031",    "Demo",     "demo@openagenda.io",   "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     1,              false),
-    ("e99040ca-b82f-4404-8253-f74e43abd0a2",    "John",     "john@openagenda.io",   "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     0,              false),
-    ("3e24a0fb-b897-47b4-9a28-f3509f154aea",    "Alice",    "alice@openagenda.io",  "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     0,              false),
-    ("4f9760af-18d4-4b49-bc01-9fac3aa9a86a",    "Bob",      "bob@openagenda.io",    "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     -1,             false);
+    (id,                                        name,       email,                  password,                                                           is_accepted,    is_blocked, is_admin) values
+    ("7e4140af-b7e7-4e4f-83b6-333d93476552",    "Admin",    "admin@openagenda.io",  "$2y$10$yBASk27KEyCbpP5TahXKG.WFJZxsgqbSHoPLmBZSFFliQ.DDj2LOu",     1,              false,      true),
+    ("cac6ac5e-4445-4dd7-b128-090d0547c031",    "Demo",     "demo@openagenda.io",   "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     1,              false,      false),
+    ("e99040ca-b82f-4404-8253-f74e43abd0a2",    "John",     "john@openagenda.io",   "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     0,              false,      false),
+    ("3e24a0fb-b897-47b4-9a28-f3509f154aea",    "Alice",    "alice@openagenda.io",  "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     0,              false,      false),
+    ("4f9760af-18d4-4b49-bc01-9fac3aa9a86a",    "Bob",      "bob@openagenda.io",    "$2y$10$tp5eFM0rq.FUFQSu.8jxq.W9J6YXH13ND4yER6u2azRXnq95WIIsu",     -1,             false,      false);

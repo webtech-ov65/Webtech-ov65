@@ -1,7 +1,12 @@
 <?php
 require_once('../private/components/header.php');
-?>
 
+if (!$userManager->is_admin())
+{
+    // Mask page's existence
+    require_once('../private/components/error_404.php');
+}
+?>
 <div class="flex-x">
     <div class="flex-y gap-2 width-30">
         <section class="flex-y">
@@ -30,11 +35,13 @@ require_once('../private/components/header.php');
                     <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
 
                     <div class="right">
-                        <form class="inline-block">
+                        <form class="inline-block" action="admin-accept.php" method="post">
+                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
                             <button class="small-button accept-button">Accept</button>
                         </form>
 
-                        <form class="inline-block">
+                        <form class="inline-block" action="admin-reject-delete.php" method="post">
+                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
                             <button class="small-button decline-button">Reject</button>
                         </form>
                     </div>
@@ -57,11 +64,13 @@ require_once('../private/components/header.php');
                     <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
 
                     <div class="right">
-                        <form class="inline-block">
+                        <form class="inline-block" action="admin-block.php" method="post">
+                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
                             <button class="small-button block-button">Block</button>
                         </form>
 
-                        <form class="inline-block">
+                        <form class="inline-block" action="admin-reject_delete.php" method="post">
+                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
                             <button class="small-button delete-button">Delete</button>
                         </form>
                     </div>

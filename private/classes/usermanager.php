@@ -23,11 +23,12 @@ final class UserManager
         // Hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
         
-        $this->db->query("INSERT INTO users (id, name, email, password, is_accepted, is_admin) VALUES (
+        $this->db->query("INSERT INTO users (id, name, email, password, is_accepted, is_blocked, is_admin) VALUES (
             '" . guid() . "',
             '" . $this->db->real_escape_string($name) . "',
             '" . $this->db->real_escape_string($email) . "',
             '" . $password . "',
+            0,
             0,
             0
         );");
