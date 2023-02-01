@@ -63,13 +63,29 @@ function showPopup(e, cell) {
 
     var titleInput = document.createElement("input");
     titleInput.setAttribute("type", "text");
+    titleInput.setAttribute("id", "titleInput");
     titleInput.setAttribute("placeholder", "Add title");
     popup.appendChild(titleInput);
 
     var timeInput = document.createElement("input");
     timeInput.setAttribute("type", "time");
+    timeInput.setAttribute("id", "timeInput");
     timeInput.setAttribute("placeholder", "Time");
     popup.appendChild(timeInput);
+
+    var descriptionTextArea = document.createElement("textarea");
+    descriptionTextArea.setAttribute("placeholder", "Add description");
+    descriptionTextArea.setAttribute("maxlength", "1000");
+    popup.appendChild(descriptionTextArea);
+    
+    var charCountDisplay = document.createElement("div");
+    charCountDisplay.setAttribute("id", "charcount");
+    charCountDisplay.textContent = "0/1000 characters";
+    popup.appendChild(charCountDisplay);
+    
+    descriptionTextArea.addEventListener("input", function() {
+    charCountDisplay.textContent = descriptionTextArea.value.length + "/1000 characters";
+    });
 
     popup.style.left = e.clientX + "px";
     popup.style.top = e.clientY + "px";
@@ -88,6 +104,11 @@ function showPopup(e, cell) {
         timeInput.value = cellTime.innerHTML;
     }
 
+    var cellDescription = cell.getElementsByClassName("event-description")[0];
+    if (cellDescription) {
+        descriptionTextarea.value = cellDescription.innerHTML;
+    }
+
     document.addEventListener('mousedown', function(event) {
         var isClickInside = popup.contains(event.target);
         if (!isClickInside) {
@@ -104,14 +125,10 @@ function showPopup(e, cell) {
     deleteButton.innerHTML = "Delete event";
     popup.appendChild(deleteButton);
 
-    var deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-box");
-    deleteButton.innerHTML = "Delete event";
-    popup.appendChild(deleteButton);
-
     deleteButton.addEventListener("click", function() {
         cell.classList.remove("box");
         cell.innerHTML = "";
+        cell.style.backgroundColor = "";
         closePopup();
     });
 
@@ -139,61 +156,73 @@ function showPopup(e, cell) {
         }
     });
 
+    descriptionTextArea.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            var descriptionDiv = cell.getElementsByClassName("event-description")[0];
+            if (!descriptionDiv) {
+                descriptionDiv = document.createElement("div");
+                descriptionDiv.classList.add("event-description");
+                cell.appendChild(descriptionDiv);
+            }
+            descriptionDiv.innerHTML = descriptionTextarea.value;
+        }
+    });
+
 cell.addEventListener("contextmenu", function(event) {
     event.preventDefault();
     
     closePopup();
-    
-    var menu = document.createElement("div");
-    menu.classList.add("context-menu");
-    menu.style.left = event.pageX + "px";
-    menu.style.top = event.pageY + "px";
-    
-    var deleteOption = document.createElement("div");
-    deleteOption.innerHTML = '<i class="fas fa-trash-alt"></i>   Delete';
-    deleteOption.classList.add("context-menu-option");
-    deleteOption.addEventListener("click", function() {
-      cell.remove();
-      closePopup();
-    });
 
-    menu.appendChild(deleteOption);
-    
-    var colorOptions = document.createElement("div");
-    colorOptions.classList.add("context-menu-colors");
-
-    var colors = ["#d50000", "#e67c73", "#f4511e", "#f6bf26", "#33b679", "#0b8043", "#039be5", 
-    "#3f51b5", "#7986cb", "#8e24aa", "#616161"];
-    for (var i = 0; i < colors.length; i++) {
-
-    var colorOption = document.createElement("div");
-    colorOption.classList.add("context-menu-color");
-    colorOption.style.backgroundColor = colors[i];
-    colorOption.addEventListener("click", function(color) {
-    return function() {
-        cell.style.backgroundColor = color;
+    if (cell.classList.contains("box")) {
+        var menu = document.createElement("div");
+        menu.classList.add("context-menu");
+        menu.style.left = event.pageX + "px";
+        menu.style.top = event.pageY + "px";
+        
+        var deleteOption = document.createElement("div");
+        deleteOption.innerHTML = '<i class="fas fa-trash-alt"></i>   Delete';
+        deleteOption.classList.add("context-menu-option");
+        deleteOption.addEventListener("click", function() {
+            cell.classList.remove("box");
+            cell.innerHTML = "";
+            cell.style.backgroundColor = "";
         closePopup();
-    };
+        });
 
-    }(colors[i]));
-    colorOptions.appendChild(colorOption);
+        menu.appendChild(deleteOption);
+        
+        var colorOptions = document.createElement("div");
+        colorOptions.classList.add("context-menu-colors");
+
+        var colors = ["#d50000", "#e67c73", "#f4511e", "#f6bf26", "#33b679", "#0b8043", "#039be5", 
+        "#3f51b5", "#7986cb", "#8e24aa", "#616161"];
+        for (var i = 0; i < colors.length; i++) {
+
+        var colorOption = document.createElement("div");
+        colorOption.classList.add("context-menu-color");
+        colorOption.style.backgroundColor = colors[i];
+        colorOption.addEventListener("click", function(color) {
+        return function() {
+            cell.style.backgroundColor = color;
+            closePopup();
+
+        };
+
+        }(colors[i]));
+        colorOptions.appendChild(colorOption);
+        }
     }
-    
-    menu.appendChild(colorOptions);
-    
-    currentPopup = menu;     
-    document.body.appendChild(menu);
+        
+        menu.appendChild(colorOptions);
+        
+        currentPopup = menu;     
+        document.body.appendChild(menu);
 
-    menu.addEventListener('mousedown', function(event) {
-        event.stopPropagation();
-    });
+        menu.addEventListener('mousedown', function(event) {
+            event.stopPropagation();
+        });
     
 });   
-
-    deleteButton.addEventListener("click", function() {
-        cell.remove();
-        closePopup();
-    });
 }
 
 function closePopup() {
