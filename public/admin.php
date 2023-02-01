@@ -34,17 +34,25 @@ if (!$userManager->is_admin())
                 <div class="flex-x center">
                     <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
 
-                    <div class="right">
-                        <form class="inline-block" action="admin-accept.php" method="post">
-                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                            <button class="small-button accept-button">Accept</button>
-                        </form>
+                    <?php
+                    // Prevent actions on yourself
+                    if ($user['id'] != $userManager->get_logged_in_user_id())
+                    {
+                    ?>
+                        <div class="right">
+                            <form class="inline-block" action="admin-accept.php" method="post">
+                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
+                                <button class="small-button accept-button">Accept</button>
+                            </form>
 
-                        <form class="inline-block" action="admin-reject-delete.php" method="post">
-                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                            <button class="small-button decline-button">Reject</button>
-                        </form>
-                    </div>
+                            <form class="inline-block" action="admin-reject-delete.php" method="post">
+                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
+                                <button class="small-button decline-button">Reject</button>
+                            </form>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             <?php
             }
@@ -63,17 +71,28 @@ if (!$userManager->is_admin())
                 <div class="flex-x">
                     <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
 
-                    <div class="right">
-                        <form class="inline-block" action="admin-block.php" method="post">
-                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                            <button class="small-button block-button">Block</button>
-                        </form>
+                    <?php
+                    // Prevent actions on yourself
+                    if ($user['id'] != $userManager->get_logged_in_user_id())
+                    {
+                    ?>
+                        <div class="right">
+                            <?php
+                            $is_blocked = $userManager->is_blocked($user['id']);
+                            ?>
+                            <form class="inline-block" action="admin-<?= $is_blocked ? 'un' : ''; ?>block.php" method="post">
+                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
+                                <button class="small-button block-button"><?= $is_blocked ? 'Unb' : 'B'; ?>lock</button>
+                            </form>
 
-                        <form class="inline-block" action="admin-reject_delete.php" method="post">
-                            <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
-                            <button class="small-button delete-button">Delete</button>
-                        </form>
-                    </div>
+                            <form class="inline-block" action="admin-reject-delete.php" method="post">
+                                <input type="hidden" name="user_id" value="<?= $user['id']; ?>">
+                                <button class="small-button delete-button">Delete</button>
+                            </form>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             <?php
             }

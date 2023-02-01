@@ -48,6 +48,11 @@ final class UserManager
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
+    public function get_logged_in_user_id()
+    {
+        return $_SESSION['user'];
+    }
+    
     public function log_in($email, $password)
     {
         $errors = [];
@@ -108,6 +113,19 @@ final class UserManager
         
         $user = $result->fetch_assoc();
         return $user['is_admin'];
+    }
+    
+    public function is_blocked($user_id)
+    {
+        $result = $this->db->query("SELECT is_blocked FROM users WHERE id = '" . $this->db->real_escape_string($user_id) . "';");
+        
+        if ($result->num_rows != 1)
+        {
+            return false;
+        }
+        
+        $user = $result->fetch_assoc();
+        return $user['is_blocked'];
     }
     
     public function is_logged_in()
