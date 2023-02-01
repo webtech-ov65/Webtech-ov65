@@ -28,10 +28,12 @@ if ($db->connect_errno)
 require_once('functions.php');
 
 // Classes
+require_once('classes/adminmanager.php');
 require_once('classes/calendarmanager.php');
 require_once('classes/groupmanager.php');
 require_once('classes/usermanager.php');
 
+$adminManager = new AdminManager($db);
 $calendarManager = new CalendarManager($db);
 $groupManager = new GroupManager($db);
 $userManager = new UserManager($db);

@@ -35,6 +35,18 @@ final class UserManager
         return ['succeeded' => true, 'errors' => $errors];
     }
     
+    public function get_accepted_users()
+    {
+        $result = $this->db->query("SELECT * FROM users WHERE is_accepted = 1;");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function get_pending_users()
+    {
+        $result = $this->db->query("SELECT * FROM users WHERE is_accepted = 0;");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
     public function log_in($email, $password)
     {
         $errors = [];
@@ -56,10 +68,17 @@ final class UserManager
             return ['succeeded' => false, 'errors' => $errors];
         }
         
-        if (!$user['is_accepted'])
+        if ($user['is_accepted'] == 0)
         {
             // User has not been accepted (yet)
             array_push($errors, 'Your account has not yet been accepted by an administrator.');
+            return ['succeeded' => false, 'errors' => $errors];
+        }
+        
+        if ($user['is_accepted'] == -1)
+        {
+            // User has not been accepted (yet)
+            array_push($errors, 'Your account has been rejected or deleted by an administrator.');
             return ['succeeded' => false, 'errors' => $errors];
         }
         

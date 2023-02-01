@@ -22,26 +22,26 @@ require_once('../private/components/header.php');
                 <h2 class="left">User requests</h2>
             </header>
             
-            <!-- TODO: Display list of user requests -->
+            <?php
+            foreach ($userManager->get_pending_users() as $user)
+            {
+            ?>
+                <div class="flex-x center">
+                    <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
 
+                    <div class="right">
+                        <form class="inline-block">
+                            <button class="small-button accept-button">Accept</button>
+                        </form>
 
-            <!-- Example placeholder -->
-            <div style='display: flex'>
-                <p>
-                    - Bot
-                </p>
-
-                <div style='display: inline-block; margin-left: auto'>
-                    <button class="small-button accept-button">
-                        Accept
-                    </button>
-
-                    <button class="small-button decline-button">
-                        Decline
-                    </button>
+                        <form class="inline-block">
+                            <button class="small-button decline-button">Reject</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
- 
+            <?php
+            }
+            ?>
         </section>
 
         <section class="flex-y">
@@ -49,29 +49,27 @@ require_once('../private/components/header.php');
                 <h2 class="left">Users</h2>
             </header>
 
-            <!-- TODO: Display list of users -->
+            <?php
+            foreach ($userManager->get_accepted_users() as $user)
+            {
+            ?>
+                <div class="flex-x">
+                    <p><?= $user['name']; ?> &lt;<?= $user['email']; ?>&gt;</p>
 
+                    <div class="right">
+                        <form class="inline-block">
+                            <button class="small-button block-button">Block</button>
+                        </form>
 
-
-            <!-- Example placeholder -->
-            <div style='display: flex'>
-                <p>
-                    - Admin
-                </p>
-
-                <div style='display: inline-block; margin-left: auto'>
-                    <button class="small-button block-button">
-                        Block
-                    </button>
-
-                    <button class="small-button delete-button">
-                        Delete
-                    </button>
+                        <form class="inline-block">
+                            <button class="small-button delete-button">Delete</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-
+            <?php
+            }
+            ?>
         </section>
-    
     </div>
     
     <div class="flex-y width-70">
