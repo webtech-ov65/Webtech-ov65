@@ -34,6 +34,10 @@ final class CalendarManager
     {
         if (isset($year) && isset($month) && isset($day))
         {
+            $year = min(max((int)$year, 1950), 2100);
+            $month = min(max((int)$month, 1), 12);
+            $day = min(max((int)$day, 1), 31);
+            
             $date = new DateTime($year . '-' . $month . '-' . $day);
             return intval($date->format('W'));
         }
