@@ -65,6 +65,7 @@ function showPopup(e, cell) {
     titleInput.setAttribute("type", "text");
     titleInput.setAttribute("id", "titleInput");
     titleInput.setAttribute("placeholder", "Add title");
+    titleInput.setAttribute("maxlength", "25");
     popup.appendChild(titleInput);
 
     var timeInput = document.createElement("input");
