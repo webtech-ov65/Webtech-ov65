@@ -23,7 +23,9 @@ create table if not exists user_groups
 (
     `user_id` char(36) not null,
     group_id char(36) not null,
-    primary key (`user_id`, group_id)
+    primary key (`user_id`, group_id),
+    foreign key (`user_id`) references users(id),
+    foreign key (group_id) references groups(id)
 );
 
 create table if not exists events
@@ -40,7 +42,9 @@ create table if not exists event_groups
 (
     event_id char(36) not null,
     group_id char(36) not null,
-    primary key (event_id, group_id)
+    primary key (event_id, group_id),
+    foreign key (event_id) references events(id),
+    foreign key (group_id) references groups(id)
 );
 
 create table if not exists comments
@@ -51,7 +55,9 @@ create table if not exists comments
     `user_id` char(36) not null,
     event_id char(36) not null,
     approved boolean not null default 0,
-    primary key (id)
+    primary key (id),
+    foreign key (`user_id`) references users(id),
+    foreign key (event_id) references events(id)
 );
 
 insert into groups
